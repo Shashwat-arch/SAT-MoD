@@ -124,13 +124,13 @@ The final stdout block reports mean ± std of ACC, NMI, ARI, F1, runtime, and pe
 
 ## Citation
 
-```bibtex
-@article{satmod,
-  title   = {SAT-MoD: An End-to-End Deep Graph Clustering via Structural and Attributed Modularity},
-  author  = {Shashwat Kumar Panigrahi, Panthadeep Bhattacharjee},
-  journal = {TBD},
-  year    = {2026}
-}
+#```bibtex
+#@article{satmod,
+#  title   = {SAT-MoD: An End-to-End Deep Graph Clustering via Structural and Attributed Modularity},
+#  author  = {Shashwat Kumar Panigrahi, Panthadeep Bhattacharjee},
+#  journal = {TBD},
+#  year    = {2026}
+#}
 ```
 
 ---
