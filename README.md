@@ -25,18 +25,6 @@ with $\alpha = \sigma(\alpha_{\text{raw}}) \in (0, 1)$ learnable. The training o
 
 ---
 
-## Installation
-
-```bash
-git clone https://github.com/<your-username>/sat-mod.git
-cd sat-mod
-pip install -r requirements.txt
-```
-
-PyTorch and PyTorch Geometric should be installed matching your CUDA version. See the [PyG installation guide](https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html) if `pip install` of `torch-geometric` does not pull in the right scatter/sparse extensions.
-
----
-
 ## Usage
 
 ### Dense loss (small / mid graphs)
