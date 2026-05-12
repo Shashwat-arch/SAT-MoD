@@ -30,17 +30,17 @@ with $\alpha = \sigma(\alpha_{\text{raw}}) \in (0, 1)$ learnable. The training o
 ### Dense loss (small / mid graphs)
 
 ```bash
-python train_dense.py --dataset Cora     --epochs 500 --runs 5 --hidden 64
-python train_dense.py --dataset Photo    --epochs 500 --runs 5 --hidden 128
-python train_dense.py --dataset Cora_ML  --epochs 500 --runs 5 --hidden 64 --plot
+python train_dense.py --dataset Cora     --epochs 200 --runs 10 --hidden 512
+python train_dense.py --dataset Photo    --epochs 200 --runs 10 --hidden 512
+python train_dense.py --dataset Cora_ML  --epochs 200 --runs 10 --hidden 512 --plot
 ```
 
 ### Sparse loss (large graphs)
 
 ```bash
-python train_sparse.py --dataset ogbn-arxiv --epochs 1000 --runs 3 --hidden 256
-python train_sparse.py --dataset Flickr     --epochs 500  --runs 3 --hidden 128
-python train_sparse.py --dataset Reddit2    --epochs 500  --runs 1 --hidden 64
+python train_sparse.py --dataset ogbn-arxiv --epochs 200 --runs 5 --hidden 256
+python train_sparse.py --dataset Flickr     --epochs 200  --runs 5 --hidden 256
+python train_sparse.py --dataset Reddit2    --epochs 200  --runs 5 --hidden 128
 ```
 
 `train_sparse.py` auto-selects `sparse_gcn` for Reddit2 (CPU adjacency build → GPU sparse matmul) and `deep_gcn` for the others; override with `--model`.
