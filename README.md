@@ -1,10 +1,10 @@
 # SAT-MoD: End-to-End Deep Graph Clustering via Structural and Attributed Modularity
 
-Reference implementation of **SAT-MoD**, a GNN-based deep graph clustering method that jointly optimizes a convex combination of **structural** and **attributed** modularity, denoted $Q_{abs}$. The mixing coefficient $\alpha$ is learned end-to-end via a logit reparameterization, removing the need for dataset-specific tuning of the structure–attribute trade-off.
+Reference implementation of **SAT-MoD**, a GNN-based deep graph clustering method that jointly optimizes a convex combination of **structural** and **attributed** modularity, denoted $Q_{abs}$. The weight coefficient $\alpha$ is learned end-to-end via a logit reparameterization, removing the need for dataset-specific tuning of the structure–attribute trade-off.
 
 Two training entry points are provided:
 
-- `train_dense.py` &nbsp;— small-to-mid graphs (Cora, CiteSeer, PubMed, Cora_ML, DBLP, Photo, Computers, WIKI, BLOGCATALOG, FACEBOOK, USA/Brazil/Europe airports).
+- `train_dense.py` &nbsp;— small-to-mid graphs (Cora, CiteSeer, PubMed, Cora_ML, DBLP, Photo, Computers, WIKI, BLOGCATALOG).
 - `train_sparse.py` — large graphs (ogbn-arxiv, Flickr, Reddit2).
 
 The two scripts share the same dataset, model, and metric utilities; they differ in how they construct the modularity matrices (dense $B$, $B_{\text{attr}}$ vs. sparse edge-indexed and top-$k$ k-NN representations) and in the regularizers used.
@@ -19,7 +19,7 @@ $$B = A - \frac{d d^\top}{2m}, \qquad B_{\text{attr}} = W - \frac{s s^\top}{2w}.
 
 For a soft assignment $C \in \mathbb{R}^{n \times k}$,
 
-$$Q_{abs}(C) = \alpha \cdot \frac{\operatorname{tr}(C^\top B C)}{2m} + (1 - \alpha) \cdot \frac{\operatorname{tr}(C^\top B_{\text{attr}} C)}{2w},$$
+$$Q_{abs}(C) = \alpha \cdot \frac{Tr(C^\top B C)}{2m} + (1 - \alpha) \cdot \frac{Tr(C^\top B_{\text{attr}} C)}{2w},$$
 
 with $\alpha = \sigma(\alpha_{\text{raw}}) \in (0, 1)$ learnable. The training objective minimizes $-Q_{abs}(C)$ plus collapse, entropy, and (in the sparse variant) balance / occupancy regularizers.
 
@@ -81,7 +81,7 @@ Sparse-only flags include `--delta`, `--eta` (balance / occupancy regularizers),
 
 | Script | Dataset names |
 | --- | --- |
-| `train_dense.py` | `Cora`, `CiteSeer`, `PubMed`, `Cora_ML`, `DBLP`, `Computers`, `Photo`, `WIKI`, `BLOGCATALOG`, `FACEBOOK`, `USA`, `Brazil`, `Europe` |
+| `train_dense.py` | `Cora`, `CiteSeer`, `PubMed`, `Cora_ML`, `DBLP`, `Computers`, `Photo`, `WIKI`, `BLOGCATALOG` |
 | `train_sparse.py` | All of the above plus `ogbn-arxiv`, `Flickr`, `Reddit2` |
 
 `ogbn-arxiv`, `Flickr`, and `Reddit2` are too large for the dense modularity matrices and will be rejected by `train_dense.py`.
